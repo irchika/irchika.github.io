@@ -317,6 +317,7 @@
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWQK584B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 <div class="container">
 
     <div class="hero">
@@ -326,60 +327,60 @@
 
     <!-- меню -->
     <div class="menu">
-        <a href="#">главная</a>
-        <a href="#">каталог</a>
-        <a href="#">акции</a>
-        <a href="#">контакты</a>
-        <a href="#">блог</a>
+        <a href="#">Главная</a>
+        <a href="#">Каталог</a>
+        <a href="#">Акции</a>
+        <a href="#">Настройка</a>
+        <a href="#">Поддержка</a>
     </div>
 
     <!-- поиск -->
     <div class="search-section">
-        <span class="search-label">🔎 ищу:</span>
+        <span class="search-label">Поиск:</span>
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="например,..">
-            <button id="searchBtn">найти</button>
+            <input type="text" id="searchInput" placeholder="Сюда ввести текст поиска">
+            <button id="searchBtn">Найти</button>
         </div>
     </div>
 
     <!-- карточки товаров -->
-    <div class="cards-title">✨ любимое ✨</div>
+    <div class="cards-title">Карточки товаров</div>
     <div class="products">
         <div class="card" data-product-id="101">
             <div class="card-emoji">🧸</div>
-            <h3>мишка в свитере</h3>
-            <p>мягкий, уютный, пастельный</p>
-            <button class="add-to-cart">в корзину</button>
+            <h3>Тариф Минимум</h3>
+            <p>Опции тарифа Минимум</p>
+            <button class="add-to-cart">В корзину</button>
         </div>
         <div class="card" data-product-id="102">
             <div class="card-emoji">☁️</div>
-            <h3>облачный скраб</h3>
-            <p>с запахом матчи и ванили</p>
-            <button class="add-to-cart">в корзину</button>
+            <h3>Тариф Максимум</h3>
+            <p>Опции тарифа Максимум</p>
+            <button class="add-to-cart">В корзину</button>
         </div>
         <div class="card" data-product-id="103">
             <div class="card-emoji">🍰</div>
-            <h3>свеча «кекс»</h3>
-            <p>с кремовой ноткой</p>
-            <button class="add-to-cart">в корзину</button>
+            <h3>Тариф ВИП</h3>
+            <p>Опции тарифа ВИП</p>
+            <button class="add-to-cart">В корзину</button>
         </div>
     </div>
 
     <!-- форма -->
     <div class="form-card">
-        <h3>💌 получить открытку</h3>
-        <p style="color:#b58371; margin-bottom:0.2rem;">оставить почту</p>
+        <h3>Консультация по тарифам</h3>
+        <p style="color:#b58371; margin-bottom:0.2rem;">Оставить почту</p>
         <form id="contactForm">
             <div class="form-group">
-                <input type="text" name="name" placeholder="как к тебе обращаться?">
-                <input type="email" name="email" placeholder="твой email ✧">
+                <input type="text" name="name" placeholder="Как к вам обращаться?">
+                <input type="email" name="email" placeholder="Ваш email ✧">
             </div>
-            <button type="submit">отправить →</button>
+            <button type="submit">Отправить →</button>
         </form>
     </div>
 
     <div class="footer">
-        <span class="tiny-heart">💖</span> тестовая область для GTM / GA4 / метрик <span class="tiny-heart">🍰</span>
+        Тестовая область для GTM / GA4 / метрики 
     </div>
 </div>
 
@@ -395,7 +396,7 @@
                 'search_term': query
             });
         }
-        if(query) alert(`ищем «${query}» `);
+        if(query) alert(`Ищем «${query}» `);
     });
 
     // Кнопки "в корзину" — пример отслеживания
@@ -403,7 +404,7 @@
         btn.addEventListener('click', function() {
             let card = this.closest('.card');
             let productName = card?.querySelector('h3')?.innerText || 'товар';
-            console.log(`добавили в корзину: ${productName}`);
+            console.log(`Добавили в корзину: ${productName}`);
             if (window.dataLayer) {
                 window.dataLayer.push({
                     'event': 'add_to_cart',
@@ -418,14 +419,14 @@
     document.getElementById('contactForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
         let name = this.querySelector('[name="name"]')?.value || 'аноним';
-        console.log(`форма отправлена, имя: ${name}`);
+        console.log(`Форма отправлена, имя: ${name}`);
         if (window.dataLayer) {
             window.dataLayer.push({
                 'event': 'form_submit',
-                'form_name': 'милая открытка'
+                'form_name': 'Консультация по тарифам'
             });
         }
-        alert(`спасибо, ${name}! скоро пришлю открытку`);
+        alert(`Спасибо, ${name}! скоро свяжемсяс Вами`);
         this.reset();
     });
 </script>
