@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — тестовый сайт</title>
+    
+    <script>
+        window.dataLayer = window.dataLayer || [];
+    </script>
+    
+    <!-- GTM — замените на ваш ID -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KWQK584B');</script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fef9f5;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: #4a3b2c;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* навигация */
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            background: rgba(255, 248, 240, 0.8);
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+        }
+
+        .menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #8b6b5c;
+            transition: 0.2s;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .menu a:hover {
+            color: #e38b7a;
+            border-bottom-color: #f7bfb0;
+        }
+
+        /* хлебные крошки */
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            color: #b48c7c;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #cb8a74;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .cards-title {
+            font-size: 1.7rem;
+            font-weight: 500;
+            margin: 1.5rem 0 1rem 0;
+            color: #b17e6b;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 1.6rem;
+            flex: 1 1 240px;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ffefea;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card-emoji {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: #cb8a74;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #9d7b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card button {
+            background: none;
+            border: 1.5px solid #f7cfc1;
+            padding: 0.5rem 1.3rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #bc7f6a;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .card button:hover {
+            background: #fef1ea;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ffe1d4;
+            color: #c39987;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+            .products { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWQK584B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="container">
+    <!-- меню такое же, как на главной -->
+    <div class="menu">
+        <a href="index.html">главная</a>
+        <a href="catalog.html">каталог</a>
+        <a href="#">акции</a>
+        <a href="#">контакты</a>
+    </div>
+
+    <!-- хлебные крошки для навигации -->
+    <div class="breadcrumb">
+        <a href="index.html">Главная</a> / Каталог
+    </div>
+
+    <!-- заголовок страницы -->
+    <div class="cards-title">📋 Каталог тарифов</div>
+    
+    <!-- карточки товаров -->
+    <div class="products">
+        <div class="card" data-product-id="101">
+            <div class="card-emoji">🧸</div>
+            <h3>Тариф Минимум</h3>
+            <p>Опции тарифа Минимум</p>
+            <button class="add-to-cart">В корзину</button>
+        </div>
+        <div class="card" data-product-id="102">
+            <div class="card-emoji">☁️</div>
+            <h3>Тариф Максимум</h3>
+            <p>Опции тарифа Максимум</p>
+            <button class="add-to-cart">В корзину</button>
+        </div>
+        <div class="card" data-product-id="103">
+            <div class="card-emoji">🍰</div>
+            <h3>Тариф ВИП</h3>
+            <p>Опции тарифа ВИП</p>
+            <button class="add-to-cart">В корзину</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        Тестовая область для GTM / GA4 / метрики
+    </div>
+</div>
+
+<script>
+    // Кнопки "в корзину" — пример отслеживания
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let card = this.closest('.card');
+            let productName = card?.querySelector('h3')?.innerText || 'товар';
+            console.log(`Добавили в корзину: ${productName}`);
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    'event': 'add_to_cart',
+                    'product_name': productName
+                });
+            }
+            alert(`${productName} — уже в корзине`);
+        });
+    });
+</script>
+</body>
+</html>
