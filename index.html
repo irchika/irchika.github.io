@@ -345,22 +345,25 @@
     <!-- карточки товаров -->
     <div class="cards-title">Карточки товаров</div>
     <div class="products">
-        <div class="card" data-product-id="101">
+        <div class="card" data-product-id="101" data-product-name="Тариф Минимум" data-price="1000">
             <div class="card-emoji">🧸</div>
             <h3>Тариф Минимум</h3>
             <p>Опции тарифа Минимум</p>
+            <div class="price">1 000 ₽</div>
             <button class="add-to-cart">В корзину</button>
         </div>
-        <div class="card" data-product-id="102">
+        <div class="card" data-product-id="102" data-product-name="Тариф Максимум" data-price="2000">
             <div class="card-emoji">☁️</div>
             <h3>Тариф Максимум</h3>
             <p>Опции тарифа Максимум</p>
+            <div class="price">2 000 ₽</div>
             <button class="add-to-cart">В корзину</button>
         </div>
-        <div class="card" data-product-id="103">
+        <div class="card" data-product-id="103" data-product-name="Тариф ВИП" data-price="3000">
             <div class="card-emoji">🍰</div>
             <h3>Тариф ВИП</h3>
             <p>Опции тарифа ВИП</p>
+            <div class="price">3 000 ₽</div>
             <button class="add-to-cart">В корзину</button>
         </div>
     </div>
@@ -379,41 +382,61 @@
     </div>
 
     <div class="footer">
-        Тестовая область для GTM / GA4 / метрики 
+        Тестовая область для GTM / GA4 / метрики
     </div>
 </div>
 
 <script>
-    // простые обработчики — чтобы кнопки что-то делали и отправляли события в консоль / dataLayer
-    // Поиск
-    document.getElementById('searchBtn')?.addEventListener('click', function() {
-        let query = document.getElementById('searchInput').value;
-        console.log(`Поиск: ${query}`);
-        if (window.dataLayer) {
-            window.dataLayer.push({
-                'event': 'search_submit',
-                'search_term': query
-            });
-        }
-        if(query) alert(`Ищем «${query}» `);
-    });
+    // функция для генерации уникального transaction_id
+    function generateTransactionId() {
+        return 'TXN_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8);
+    }
 
-    // Кнопки "в корзину" — пример отслеживания
+    // Обработчик добавления в корзину → отправка purchase
     document.querySelectorAll('.add-to-cart').forEach(btn => {
         btn.addEventListener('click', function() {
-            let card = this.closest('.card');
-            let productName = card?.querySelector('h3')?.innerText || 'товар';
-            console.log(`Добавили в корзину: ${productName}`);
+            const card = this.closest('.card');
+            if (!card) return;
+
+            // получаем данные товара из атрибутов или из текста
+            const productId = card.getAttribute('data-product-id') || 'unknown';
+            const productName = card.getAttribute('data-product-name') || card.querySelector('h3')?.innerText || 'Товар';
+            const productPrice = parseFloat(card.getAttribute('data-price')) || 0;
+            
+            // для имитации покупки – один товар, количество 1
+            const quantity = 1;
+            const totalValue = productPrice * quantity;
+            const transactionId = generateTransactionId();
+            const currency = 'RUB';
+
+            // формируем объект события purchase в формате GA4 (через dataLayer)
+            const purchaseEvent = {
+                'event': 'purchase',
+                'ecommerce': {
+                    'transaction_id': transactionId,
+                    'value': totalValue,
+                    'currency': currency,
+                    'items': [
+                        {
+                            'item_id': productId,
+                            'item_name': productName,
+                            'price': productPrice,
+                            'quantity': quantity,
+                            'item_category': 'Тарифы'
+                        }
+                    ]
+                }
+            };
+
+            // Отправляем событие в dataLayer
             if (window.dataLayer) {
-                window.dataLayer.push({
-                    'event': 'add_to_cart',
-                    'product_name': productName
-                });
+                window.dataLayer.push(purchaseEvent);
+                console.log('Purchase event отправлен:', purchaseEvent);
+            } else {
+                console.warn('dataLayer не найден');
             }
-            alert(`${productName} — уже в корзине`);
         });
     });
-
     // форма
     document.getElementById('contactForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -425,7 +448,7 @@
                 'form_name': 'Консультация по тарифам'
             });
         }
-        alert(`Спасибо, ${name}! скоро свяжемсяс Вами`);
+        alert(`Спасибо, ${name}! скоро свяжемся с Вами`);
         this.reset();
     });
 </script>
